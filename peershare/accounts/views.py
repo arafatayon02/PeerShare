@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
 # Create your views here.
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
+users = User.objects.all()
