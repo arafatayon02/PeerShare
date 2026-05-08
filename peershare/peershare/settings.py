@@ -34,7 +34,7 @@ INSTALLED_APPS = [
     'marketplace',
     'login',
     'accounts',
-    'peershare',
+    'dashboard',
     'user',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -107,17 +107,21 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
-
+import os
 LANGUAGE_CODE = 'en-us'
+TIME_ZONE     = 'Asia/Dhaka'
+USE_I18N      = True
+USE_TZ        = True
 
-TIME_ZONE = 'UTC'
+STATIC_URL       = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
-USE_I18N = True
+MEDIA_URL  = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-USE_TZ = True
+AUTH_USER_MODEL     = 'accounts.CustomUser'
+DEFAULT_AUTO_FIELD  = 'django.db.models.BigAutoField'
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/6.0/howto/static-files/
-
-STATIC_URL = 'static/'
+LOGIN_URL           = '/login/'
+LOGIN_REDIRECT_URL  = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/login/'
