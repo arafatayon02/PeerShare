@@ -41,7 +41,7 @@ def add_item(request):
             item       = form.save(commit=False)
             item.owner = request.user
             item.save()
-            messages.success(request, '✅ Item posted successfully!')
+            messages.success(request, ' Item posted successfully!')
             return redirect('home')
     else:
         form = ItemForm()
@@ -74,7 +74,7 @@ def item_detail(request, pk):
                 item.save()
                 messages.success(
                     request,
-                    f'🛒 You bought "{item.title}" for ৳{item.price}!'
+                    f' You bought "{item.title}" for ৳{item.price}!'
                 )
                 return redirect('dashboard_purchases')
             else:
@@ -94,7 +94,7 @@ def item_detail(request, pk):
                 )
                 messages.success(
                     request,
-                    f'📅 Booked {b.days} days! '
+                    f' Booked {b.days} days! '
                     f'Total: ৳{b.total_price} | '
                     f'Deposit: ৳{b.deposit.amount}'
                 )
@@ -108,7 +108,7 @@ def item_detail(request, pk):
                 r.item = item
                 r.user = request.user
                 r.save()
-                messages.success(request, '⭐ Review submitted!')
+                messages.success(request, ' Review submitted!')
                 return redirect('item_detail', pk=pk)
 
     return render(request, 'marketplace/item_detail.html', {
