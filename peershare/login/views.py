@@ -1,4 +1,4 @@
-from django.sfrom django.shortcuts import render, redirect
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import LoginForm, RegisterForm
@@ -20,7 +20,7 @@ def login_view(request):
                 login(request, user)
                 messages.success(
                     request,
-                    f'👋 Welcome back, {user.username}!'
+                    f' Welcome back, {user.username}!'
                 )
                 return redirect('/dashboard/')
             else:
@@ -61,6 +61,4 @@ def register_view(request):
 def logout_view(request):
     logout(request)
     messages.info(request, '👋 Logged out successfully.')
-    return redirect('/login/')hortcuts import render
-
-# Create your views here.
+    return redirect('/login/')
