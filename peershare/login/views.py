@@ -26,7 +26,7 @@ def login_view(request):
             else:
                 messages.error(
                     request,
-                    '❌ Wrong username or password.'
+                    ' Wrong username or password.'
                 )
     else:
         form = LoginForm()
@@ -47,7 +47,7 @@ def register_view(request):
             login(request, user)
             messages.success(
                 request,
-                '🎉 Welcome to PeerShare!'
+                ' Welcome to PeerShare!'
             )
             return redirect('/dashboard/')
         else:
@@ -60,5 +60,5 @@ def register_view(request):
 
 def logout_view(request):
     logout(request)
-    messages.info(request, '👋 Logged out successfully.')
+    messages.info(request, ' Logged out successfully.')
     return redirect('/login/')
