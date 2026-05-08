@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'login',
     'accounts',
     'peershare',
+    'user',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
