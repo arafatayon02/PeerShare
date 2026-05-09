@@ -3,6 +3,7 @@ class CustomUserAdmin(UserAdmin):
     list_display  = ['username', 'university_email', 'is_verified', 'date_joined']
     list_filter   = ['is_verified']
     search_fields = ['username', 'university_email']
-    fieldsets     = UserAdmin.fieldsets + (
+    fieldsets     = (UserAdmin.fieldsets +
+                     (
         ('University Info', {'fields': ('university_email', 'is_verified')}),
-    )
+    ))
