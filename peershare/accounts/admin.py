@@ -1,13 +1,17 @@
-from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
 
-@admin.register(CustomUser)
-class CustomUserAdmin(UserAdmin):
-    list_display  = ['username', 'university_email', 'is_verified', 'date_joined']
-    list_filter   = ['is_verified']
-    search_fields = ['username', 'university_email']
-    fieldsets     = (UserAdmin.fieldsets +
-                     (
-        ('University Info', {'fields': ('university_email', 'is_verified')}),
-    ))
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
+
+User = get_user_model()
+
+
+class RegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'university_email',
+            'password1',
+            'password2'
+        ]
