@@ -12,52 +12,50 @@ from .forms  import ItemForm, ReviewForm, BookingForm, ChatForm
 User = get_user_model()
 
 
-# ── HOME ─────────────────────────────────────────────────
+# HOME Page
 def home(request):
-    query    = request.GET.get('q', '')
+    query = request.GET.get('q', '')
     category = request.GET.get('category', '')
-    items    = Item.objects.filter(
-                   is_available=True
-               ).order_by('-created_at')
+    items = Item.objects.filter(is_available=True).order_by('-created_at')
 
     if query:
         items = items.filter(title__icontains=query)
     if category:
         items = items.filter(category=category)
 
-    return render(request, 'marketplace/home.html', {
-        'items':    items,
-        'query':    query,
+    return render(request,'marketplace/home.html', {
+        'items': items,
+        'query': query,
         'category': category,
     })
 
 
-# ── ADD ITEM ─────────────────────────────────────────────
+# ADD ITEM
 @login_required
 def add_item(request):
     if request.method == 'POST':
         form = ItemForm(request.POST, request.FILES)
         if form.is_valid():
-            item       = form.save(commit=False)
+            item = form.save(commit=False)
             item.owner = request.user
             item.save()
-            messages.success(request, ' Item posted successfully!')
+            messages.success(request,' Item posted successfully!')
             return redirect('home')
     else:
         form = ItemForm()
-    return render(request, 'marketplace/add_item.html', {'form': form})
+    return render(request,'marketplace/add_item.html',{'form': form})
 
 
-# ── ITEM DETAIL ───────────────────────────────────────────
+#ITEM DETAIL
 @login_required
 def item_detail(request, pk):
-    item         = get_object_or_404(Item, pk=pk)
-    reviews      = item.reviews.all().order_by('-created_at')
-    review_form  = ReviewForm()
+    item = get_object_or_404(Item, pk=pk)
+    reviews = item.reviews.all().order_by('-created_at')
+    review_form = ReviewForm()
     booking_form = BookingForm()
-    is_owner     = (request.user == item.owner)
-    can_rent     = item.category in ['rent', 'both']
-    can_buy      = item.category in ['sell', 'both']
+    is_owner = (request.user == item.owner)
+    can_rent = item.category in ['rent', 'both']
+    can_buy = item.category in ['sell', 'both']
 
     if request.method == 'POST':
 
@@ -78,18 +76,18 @@ def item_detail(request, pk):
                 )
                 return redirect('dashboard_purchases')
             else:
-                messages.error(request, 'This item is no longer available.')
+                messages.error(request,'This item is no longer available.')
 
         # RENT/BOOK
         if 'submit_booking' in request.POST and not is_owner:
             booking_form = BookingForm(request.POST)
             if booking_form.is_valid():
-                b        = booking_form.save(commit=False)
-                b.item   = item
+                b = booking_form.save(commit=False)
+                b.item = item
                 b.renter = request.user
                 b.save()
                 Deposit.objects.create(
-                    booking=b,
+                    booking = b,
                     amount=round(b.total_price * 10 / 100, 2)
                 )
                 messages.success(
@@ -104,7 +102,7 @@ def item_detail(request, pk):
         if 'submit_review' in request.POST:
             review_form = ReviewForm(request.POST)
             if review_form.is_valid():
-                r      = review_form.save(commit=False)
+                r = review_form.save(commit=False)
                 r.item = item
                 r.user = request.user
                 r.save()
@@ -112,17 +110,17 @@ def item_detail(request, pk):
                 return redirect('item_detail', pk=pk)
 
     return render(request, 'marketplace/item_detail.html', {
-        'item':          item,
-        'reviews':       reviews,
-        'review_form':   review_form,
-        'booking_form':  booking_form,
-        'is_owner':      is_owner,
-        'can_rent':      can_rent,
-        'can_buy':       can_buy,
+        'item': item,
+        'reviews': reviews,
+        'review_form': review_form,
+        'booking_form': booking_form,
+        'is_owner': is_owner,
+        'can_rent': can_rent,
+        'can_buy': can_buy,
     })
 
 
-# ── CHAT ─────────────────────────────────────────────────
+#CHAT
 @login_required
 def chat(request, user_id):
     other_user = get_object_or_404(User, pk=user_id)
@@ -149,8 +147,8 @@ def chat(request, user_id):
             )
             return redirect('chat', user_id=user_id)
 
-    return render(request, 'marketplace/chat.html', {
+    return render(request,'marketplace/chat.html', {
         'other_user': other_user,
-        'msgs':       msgs,
-        'form':       form,
+        'msgs': msgs,
+        'form': form,
     })

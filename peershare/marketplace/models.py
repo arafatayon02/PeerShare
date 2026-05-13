@@ -11,8 +11,8 @@ class Item(models.Model):
 
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='items'
+        on_delete = models.CASCADE,
+        related_name = 'items'
     )
     title = models.CharField(max_length=200)
     description = models.TextField()
