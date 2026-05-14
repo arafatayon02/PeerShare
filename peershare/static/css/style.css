@@ -544,6 +544,7 @@ img { display: block; max-width: 100%; }
   padding: 26px;
   box-shadow: 0 2px 10px rgba(0,0,0,0.07);
 }
+
 .reviews-box h3 { color: #1e3a8a; margin-bottom: 20px; }
 .review-card {
   padding: 14px 0;
