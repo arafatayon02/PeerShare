@@ -524,6 +524,7 @@ img { display: block; max-width: 100%; }
   margin-bottom: 20px;
   font-size: 0.9rem;
 }
+
 .notice-yellow {
   background: #fef9c3;
   color: #854d0e;
@@ -688,4 +689,5 @@ img { display: block; max-width: 100%; }
 .db-user-info p  { color: #64748b; font-size: 0.9rem; margin-top: 3px; }
 .db-top-btns     { display: flex; gap: 10px; }
 Compose
+
 Write to UAp
