@@ -609,6 +609,7 @@ img { display: block; max-width: 100%; }
   border-bottom: 1px solid #f1f5f9;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06);
 }
+
 .chat-topbar h3    { font-size: 1rem; margin-bottom: 2px; }
 .view-profile-link { font-size: 0.8rem; color: #2563eb; }
 .ml-auto           { margin-left: auto; }
