@@ -90,6 +90,7 @@ img { display: block; max-width: 100%; }
   color: #166534;
   border-left: 4px solid #16a34a;
 }
+
 .flash-error {
   background: #fee2e2;
   color: #991b1b;
