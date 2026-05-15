@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
-import dj_database_url
+
+from django.conf.global_settings import ALLOWED_HOSTS
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,18 +10,9 @@ SECRET_KEY = os.environ.get(
     'django-insecure-fallback-key-change-in-production'
 )
 
-DEBUG = True
+DEBUG  = True
 
-ALLOWED_HOSTS = [
-    "peershare-production.up.railway.app",
-    ".railway.app",
-    "127.0.0.1",
-    "localhost",
-]
-
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.railway.app",
-]
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -29,7 +21,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'accounts',
     'marketplace',
     'user',
@@ -39,8 +30,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -67,97 +56,67 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'peershare.wsgi.application'
 
-# DATABASE
 
+# ── DATABASE ──────────────────────────────────────────────
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
-if DATABASE_URL:
-    DATABASES = {
-        'default': dj_database_url.config(
-            default=DATABASE_URL,
-            conn_max_age=600,
-            ssl_require=True
-        )
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-# PASSWORD VALIDATION
+}
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'
-    },
+    {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator'},
+    {'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator'},
 ]
 
-# CUSTOM USER
+AUTH_USER_MODEL     = 'accounts.CustomUser'
+DEFAULT_AUTO_FIELD  = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'accounts.CustomUser'
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# LOGIN / LOGOUT
-
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_URL           = '/login/'
+LOGIN_REDIRECT_URL  = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/login/'
 
-# LANGUAGE & TIME
-
 LANGUAGE_CODE = 'en-us'
+TIME_ZONE     = 'Asia/Dhaka'
+USE_I18N      = True
+USE_TZ        = True
 
-TIME_ZONE = 'Asia/Dhaka'
+# ── STATIC FILES ──────────────────────────────────────────
+STATIC_URL       = '/static/'
+STATIC_ROOT      = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 
-USE_I18N = True
-USE_TZ = True
 
-# STATIC FILES
-
-STATIC_URL = '/static/'
-
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
-
-STATICFILES_STORAGE = (
-    'whitenoise.storage.CompressedManifestStaticFilesStorage'
-)
-
-# MEDIA FILES
-
-MEDIA_URL = '/media/'
+# ── MEDIA FILES ───────────────────────────────────────────
+MEDIA_URL  = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# EMAIL
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', '')
+# ── EMAIL ─────────────────────────────────────────────────
+EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST          = 'smtp.gmail.com'
+EMAIL_PORT          = 587
+EMAIL_USE_TLS       = True
+EMAIL_HOST_USER     = os.environ.get('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', '')
-
-DEFAULT_FROM_EMAIL = os.environ.get(
+DEFAULT_FROM_EMAIL  = os.environ.get(
     'DEFAULT_FROM_EMAIL',
     'PeerShare <noreply@peershare.com>'
 )
+
+# ── CSRF ───────────────────────────────────────────
+ALLOWED_HOSTS = [
+    "peershare-production.up.railway.app",
+    "127.0.0.1",
+    "localhost",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://*.railway.app",
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
