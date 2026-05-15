@@ -14,7 +14,6 @@ class Profile(models.Model):
         ('other', 'Other'),
     ]
 
-
     user        = models.OneToOneField(
                     settings.AUTH_USER_MODEL,
                     on_delete=models.CASCADE,
