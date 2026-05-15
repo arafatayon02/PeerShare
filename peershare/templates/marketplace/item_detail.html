@@ -6,10 +6,14 @@
   <!-- Item Card -->
   <div class="detail-card">
     {% if item.image %}
+    <div class="detail-img-wrapper">
       <img src="{{ item.image.url }}"
-           class="detail-img" alt="{{ item.title }}">
-    {% endif %}
+        class="detail-img"
+        alt="{{ item.title }}">
+    </div>
+{% endif %}
     <div class="detail-body">
+
 
       <div class="detail-badges">
         {% if item.category == 'rent' %}
@@ -146,9 +150,21 @@
 
   <!-- Owner notice -->
   {% if is_owner %}
-  <div class="notice-box notice-yellow">
-    📌 This is your item.
-    <a href="/dashboard/items/">Manage in Dashboard →</a>
+  <div class="owner-action-box">
+    <div class="owner-action-left">
+      <span class="owner-tag">📌 This is your item</span>
+      <p>You can manage or delete it from here.</p>
+    </div>
+    <div class="owner-action-btns">
+      <a href="/dashboard/items/"
+         class="btn small outline">
+        📊 Dashboard
+      </a>
+      <a href="/item/{{ item.pk }}/delete/"
+         class="btn small delete-btn">
+        🗑️ Delete Item
+      </a>
+    </div>
   </div>
   {% endif %}
 
