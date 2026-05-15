@@ -14,12 +14,6 @@ SECRET_KEY = os.environ.get(
 
 DEBUG  = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '.railway.app',
-    '.up.railway.app',
-]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -128,8 +122,13 @@ DEFAULT_FROM_EMAIL  = os.environ.get(
     'PeerShare <noreply@peershare.com>'
 )
 
-# ── CSRF ──────────────────────────────────────────────────
+# ── CSRF ───────────────────────────────────────────
+ALLOWED_HOSTS = [
+    "peershare-production.up.railway.app",
+    "127.0.0.1",
+    "localhost",
+]
+
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.railway.app',
-    'https://*.up.railway.app',
+    "https://peershare-production.up.railway.app",
 ]
