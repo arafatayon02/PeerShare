@@ -125,3 +125,13 @@ DEFAULT_AUTO_FIELD  = 'django.db.models.BigAutoField'
 LOGIN_URL           = '/login/'
 LOGIN_REDIRECT_URL  = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/login/'
+
+ALLOWED_HOSTS = [
+    "peershare-production.up.railway.app",
+    "127.0.0.1",
+    "localhost",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://peershare-production.up.railway.app",
+]
