@@ -17,15 +17,15 @@
 
       <div class="detail-badges">
         {% if item.category == 'rent' %}
-          <span class="badge badge-rent">🔄 For Rent</span>
+          <span class="badge badge-rent"> For Rent</span>
         {% elif item.category == 'sell' %}
-          <span class="badge badge-sell">🛒 For Sale</span>
+          <span class="badge badge-sell"> For Sale</span>
         {% else %}
-          <span class="badge badge-rent">🔄 Rent</span>
-          <span class="badge badge-sell">🛒 Sell</span>
+          <span class="badge badge-rent"> Rent</span>
+          <span class="badge badge-sell"> Sell</span>
         {% endif %}
         {% if not item.is_available %}
-          <span class="badge badge-unavail">❌ Unavailable</span>
+          <span class="badge badge-unavail"> Unavailable</span>
         {% endif %}
       </div>
 
@@ -42,7 +42,7 @@
       <div class="detail-owner">
         <span>Posted by</span>
         <a href="/user/{{ item.owner.username }}/">
-          👤 {{ item.owner.username }}
+           {{ item.owner.username }}
         </a>
         {% if not is_owner %}
           <a href="/chat/{{ item.owner.pk }}/"
@@ -61,7 +61,7 @@
     {% if can_buy %}
     <div class="action-panel buy-panel">
       <div class="panel-head">
-        <span class="panel-icon">🛒</span>
+        <span class="panel-icon"></span>
         <div>
           <h3>Buy This Item</h3>
           <p>Pay once, it's yours permanently</p>
@@ -76,7 +76,7 @@
         </label>
         <button name="submit_buy"
                 class="btn buy-btn full-btn">
-          🛒 Buy Now
+           Buy Now
         </button>
       </form>
     </div>
@@ -86,7 +86,7 @@
     {% if can_rent %}
     <div class="action-panel rent-panel">
       <div class="panel-head">
-        <span class="panel-icon">📅</span>
+        <span class="panel-icon"></span>
         <div>
           <h3>Rent This Item</h3>
           <p>Choose how many days you need it</p>
@@ -124,7 +124,7 @@
         </div>
         <button name="submit_booking"
                 class="btn rent-btn full-btn">
-          📅 Confirm Booking
+           Confirm Booking
         </button>
       </form>
     </div>
@@ -152,17 +152,17 @@
   {% if is_owner %}
   <div class="owner-action-box">
     <div class="owner-action-left">
-      <span class="owner-tag">📌 This is your item</span>
+      <span class="owner-tag"> This is your item</span>
       <p>You can manage or delete it from here.</p>
     </div>
     <div class="owner-action-btns">
       <a href="/dashboard/items/"
          class="btn small outline">
-        📊 Dashboard
+         Dashboard
       </a>
       <a href="/item/{{ item.pk }}/delete/"
          class="btn small delete-btn">
-        🗑️ Delete Item
+         Delete Item
       </a>
     </div>
   </div>
@@ -171,13 +171,13 @@
   <!-- Unavailable notice -->
   {% if not item.is_available %}
   <div class="notice-box notice-red">
-    ❌ This item is no longer available.
+     This item is no longer available.
   </div>
   {% endif %}
 
   <!-- REVIEWS -->
   <div class="reviews-box">
-    <h3>⭐ Reviews ({{ reviews.count }})</h3>
+    <h3> Reviews ({{ reviews.count }})</h3>
 
     {% for r in reviews %}
     <div class="review-card">
@@ -191,7 +191,7 @@
         </a>
         <div class="stars">
           {% for i in "12345" %}
-            {% if forloop.counter <= r.rating %}⭐{% else %}☆{% endif %}
+            {% if forloop.counter <= r.rating %}{% else %}☆{% endif %}
           {% endfor %}
         </div>
         <small>{{ r.created_at|date:"d M Y" }}</small>
@@ -214,7 +214,7 @@
         </div>
         {% endfor %}
         <button name="submit_review"
-                class="btn small">⭐ Submit</button>
+                class="btn small"> Submit</button>
       </form>
     </div>
     {% endif %}

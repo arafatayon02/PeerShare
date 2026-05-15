@@ -19,12 +19,12 @@
         <small class="help-text">{{ field.help_text }}</small>
       {% endif %}
       {% for error in field.errors %}
-        <span class="field-error">⚠ {{ error }}</span>
+        <span class="field-error"> {{ error }}</span>
       {% endfor %}
     </div>
     {% endfor %}
     <div class="form-actions">
-      <button type="submit" class="btn">📤 Post Item</button>
+      <button type="submit" class="btn"> Post Item</button>
       <a href="/" class="btn outline">Cancel</a>
     </div>
   </form>
