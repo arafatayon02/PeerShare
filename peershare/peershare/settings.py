@@ -1,9 +1,9 @@
 from pathlib import Path
 import os
-import dj_database_url
-from dotenv import load_dotenv
 
-load_dotenv()
+
+
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get(
     'django-insecure-fallback-key-change-in-production'
 )
 
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG  = True
 
 ALLOWED_HOSTS = [
     'localhost',
