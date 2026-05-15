@@ -5,7 +5,7 @@
 
   <!-- ── LEFT: Order Summary ── -->
   <div class="order-summary">
-    <h3>🧾 Order Summary</h3>
+    <h3> Order Summary</h3>
 
     <div class="order-item-card">
       {% if item.image %}
@@ -13,7 +13,7 @@
              class="order-item-img"
              alt="{{ item.title }}">
       {% else %}
-        <div class="order-item-no-img">📦</div>
+        <div class="order-item-no-img"></div>
       {% endif %}
       <div class="order-item-info">
         <h4>{{ item.title }}</h4>
@@ -31,7 +31,7 @@
       </div>
       <div class="order-row">
         <span>Type</span>
-        <span class="badge badge-sell">🛒 Purchase</span>
+        <span class="badge badge-sell"> Purchase</span>
       </div>
       <div class="order-total">
         <span>Total</span>
@@ -55,7 +55,7 @@
         <span>৳{{ amount }}</span>
       </div>
       <div class="order-row highlight-row">
-        <span>⚡ Advance (50% now)</span>
+        <span>  Advance (50% now)</span>
         <span class="advance-price">৳{{ advance }}</span>
       </div>
       <div class="order-row">
@@ -70,7 +70,7 @@
     {% endif %}
 
     <div class="secure-note">
-      🔒 Your payment is secure and encrypted
+       Your payment is secure and encrypted
     </div>
   </div>
 
@@ -78,7 +78,7 @@
   <div class="payment-form-box">
 
     <div class="payment-header">
-      <h2>💳 Choose Payment Method</h2>
+      <h2> Choose Payment Method</h2>
       <p>Select how you want to pay</p>
     </div>
 
@@ -95,7 +95,7 @@
         <div class="method-tab"
              id="tab-cod"
              onclick="selectMethod('cod')">
-          <div class="method-tab-icon">🚚</div>
+          <div class="method-tab-icon"></div>
           <div class="method-tab-label">
             <strong>Cash on Delivery</strong>
             <span>Pay when item arrives</span>
@@ -108,7 +108,7 @@
         <div class="method-tab"
              id="tab-card"
              onclick="selectMethod('card')">
-          <div class="method-tab-icon">💳</div>
+          <div class="method-tab-icon"></div>
           <div class="method-tab-label">
             <strong>Debit / Credit Card</strong>
             <span>Visa, Mastercard, AMEX</span>
@@ -134,22 +134,22 @@
       {% if pay_type == 'buy' %}
       <div class="method-section" id="section-cod">
         <div class="cod-box">
-          <div class="cod-icon">🚚</div>
+          <div class="cod-icon"></div>
           <h4>Cash on Delivery</h4>
           <p>
             You will pay <strong>৳{{ amount }}</strong>
             in cash when the item is delivered to you.
           </p>
           <ul class="cod-list">
-            <li>✅ No upfront payment needed</li>
-            <li>✅ Pay only when you receive the item</li>
-            <li>✅ Inspect before paying</li>
+            <li> No upfront payment needed</li>
+            <li> Pay only when you receive the item</li>
+            <li> Inspect before paying</li>
           </ul>
         </div>
         <button type="submit"
                 class="btn full-btn pay-submit-btn cod-btn"
                 onclick="setMethod('cod')">
-          🚚 Confirm Cash on Delivery
+           Confirm Cash on Delivery
         </button>
       </div>
       {% endif %}
@@ -159,7 +159,7 @@
 
         {% if pay_type == 'rent' %}
         <div class="advance-notice">
-          ⚡ You are paying <strong>50% advance = ৳{{ advance }}</strong>
+            You are paying <strong>50% advance = ৳{{ advance }}</strong>
           now. Remaining ৳{{ remaining }} paid on delivery.
         </div>
         {% endif %}
@@ -172,39 +172,39 @@
 
         <!-- Card Name -->
         <div class="field-group">
-          <label>👤 Cardholder Name</label>
+          <label>  Cardholder Name</label>
           {{ card_form.card_name }}
           {% for e in card_form.card_name.errors %}
-            <span class="field-error">⚠ {{ e }}</span>
+            <span class="field-error">  {{ e }}</span>
           {% endfor %}
         </div>
 
         <!-- Card Number -->
         <div class="field-group">
-          <label>💳 Card Number</label>
+          <label>  Card Number</label>
           <div class="card-input-wrap">
             {{ card_form.card_number }}
-            <span class="card-chip">💳</span>
+            <span class="card-chip"> </span>
           </div>
           {% for e in card_form.card_number.errors %}
-            <span class="field-error">⚠ {{ e }}</span>
+            <span class="field-error">  {{ e }}</span>
           {% endfor %}
         </div>
 
         <!-- Expiry + CVV -->
         <div class="two-col">
           <div class="field-group">
-            <label>📅 Expiry</label>
+            <label>  Expiry</label>
             {{ card_form.expiry }}
             {% for e in card_form.expiry.errors %}
-              <span class="field-error">⚠ {{ e }}</span>
+              <span class="field-error">  {{ e }}</span>
             {% endfor %}
           </div>
           <div class="field-group">
-            <label>🔒 CVV</label>
+            <label>  CVV</label>
             {{ card_form.cvv }}
             {% for e in card_form.cvv.errors %}
-              <span class="field-error">⚠ {{ e }}</span>
+              <span class="field-error">  {{ e }}</span>
             {% endfor %}
           </div>
         </div>
@@ -220,7 +220,7 @@
                 class="btn full-btn pay-submit-btn card-btn"
                 id="cardPayBtn"
                 onclick="setMethod('card')">
-          💳 Pay ৳{% if pay_type == 'rent' %}{{ advance }}{% else %}{{ amount }}{% endif %} by Card
+            Pay ৳{% if pay_type == 'rent' %}{{ advance }}{% else %}{{ amount }}{% endif %} by Card
         </button>
       </div>
 
@@ -229,7 +229,7 @@
 
         {% if pay_type == 'rent' %}
         <div class="advance-notice">
-          ⚡ You are paying <strong>50% advance = ৳{{ advance }}</strong>
+            You are paying <strong>50% advance = ৳{{ advance }}</strong>
           now via bKash. Remaining ৳{{ remaining }} paid on delivery.
         </div>
         {% endif %}
@@ -251,7 +251,7 @@
               </strong>
               to merchant number:
               <div class="bkash-merchant-number">
-                📱 01712-345678
+                  01712-345678
               </div>
             </li>
             <li>
@@ -268,18 +268,18 @@
 
         <!-- bKash Form -->
         <div class="field-group">
-          <label>📱 Your bKash Number</label>
+          <label>  Your bKash Number</label>
           {{ bkash_form.bkash_number }}
           {% for e in bkash_form.bkash_number.errors %}
-            <span class="field-error">⚠ {{ e }}</span>
+            <span class="field-error">  {{ e }}</span>
           {% endfor %}
         </div>
 
         <div class="field-group">
-          <label>🔑 Transaction ID (TrxID)</label>
+          <label>  Transaction ID (TrxID)</label>
           {{ bkash_form.bkash_txn_id }}
           {% for e in bkash_form.bkash_txn_id.errors %}
-            <span class="field-error">⚠ {{ e }}</span>
+            <span class="field-error">  {{ e }}</span>
           {% endfor %}
         </div>
 
@@ -310,7 +310,7 @@
 </div>
 
 <script>
-  // ── Tab switching
+  // Tab switching
   function selectMethod(method) {
     // hide all sections
     document.querySelectorAll('.method-section')
@@ -343,7 +343,7 @@
 
   // ── Auto-format card number ────────────────────────────
   const cardNum = document.querySelector(
-    '[name="card-card_number"]'
+    '[name="card_number"]'
   );
   if (cardNum) {
     cardNum.addEventListener('input', function (e) {
@@ -356,7 +356,7 @@
 
   // ── Auto-format expiry ────────────────────────────────
   const expiry = document.querySelector(
-    '[name="card-expiry"]'
+    '[name="expiry"]'
   );
   if (expiry) {
     expiry.addEventListener('input', function (e) {
@@ -383,7 +383,7 @@
         const btn = document.getElementById(id);
         if (btn) {
           btn.disabled = true;
-          btn.textContent = '⏳ Processing...';
+          btn.textContent = ' Processing...';
         }
       });
     });
