@@ -4,7 +4,7 @@ from django.conf import settings
 
 class Profile(models.Model):
     UNIVERSITY_CHOICES = [
-        ('dhaka', 'University of Asia Pacific'),
+        ('farmgate', 'University of Asia Pacific'),
         ('dhaka', 'University of Dhaka'),
         ('buet',  'BUET'),
         ('nsu',   'North South University'),
