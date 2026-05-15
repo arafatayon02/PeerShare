@@ -310,7 +310,7 @@
 </div>
 
 <script>
-  // ── Tab switching ──────────────────────────────────────
+  // ── Tab switching
   function selectMethod(method) {
     // hide all sections
     document.querySelectorAll('.method-section')
@@ -388,7 +388,7 @@
       });
     });
 
-  // ── Auto-select first tab ──────────────────────────────
+  //  Auto-select first tab
   window.onload = function () {
     {% if pay_type == 'buy' %}
       selectMethod('cod');

@@ -29,7 +29,7 @@
     </div>
     {% empty %}
     <div class="chat-empty">
-      <p>👋 No messages yet. Say hello!</p>
+      <p> No messages yet. Say hello!</p>
     </div>
     {% endfor %}
   </div>
@@ -37,7 +37,7 @@
   <form method="POST" class="chat-input">
     {% csrf_token %}
     {{ form.message }}
-    <button type="submit" class="btn">Send 📤</button>
+    <button type="submit" class="btn">Send </button>
   </form>
 
 </div>
