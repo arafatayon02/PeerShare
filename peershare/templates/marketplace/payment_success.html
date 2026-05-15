@@ -24,16 +24,16 @@
   <div class="success-card">
 
     <div class="success-row">
-      <span>📦 Item</span>
+      <span> Item</span>
       <strong>{{ payment.item.title }}</strong>
     </div>
 
     <div class="success-row">
       <span> Payment Method</span>
       {% if payment.method == 'cod' %}
-        <span class="method-pill pill-cod">🚚 Cash on Delivery</span>
+        <span class="method-pill pill-cod"> Cash on Delivery</span>
       {% elif payment.method == 'card' %}
-        <span class="method-pill pill-card">💳 Card (*{{ payment.card_last4 }})</span>
+        <span class="method-pill pill-card"> Card (*{{ payment.card_last4 }})</span>
       {% else %}
         <span class="method-pill pill-bkash">
           <span class="bkash-s">b</span> bKash
