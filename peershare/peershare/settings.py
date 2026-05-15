@@ -12,7 +12,7 @@ SECRET_KEY = os.environ.get(
     'django-insecure-fallback-key-change-in-production'
 )
 
-DEBUG  = True
+DEBUG  = False
 
 
 INSTALLED_APPS = [
