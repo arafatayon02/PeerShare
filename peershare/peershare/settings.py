@@ -9,7 +9,7 @@ SECRET_KEY = os.environ.get(
     'django-insecure-fallback-key-change-in-production'
 )
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "peershare-production.up.railway.app",
